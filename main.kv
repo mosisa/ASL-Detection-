@@ -1,0 +1,203 @@
+<ContentNavigationDrawer>:
+    ScrollView:
+        MDBoxLayout:
+            orientation:'vertical'
+            adaptive_height: True
+            MDCard:
+                size_hint: None, None
+                size: "280dp", "180dp"
+                pos_hint: {"center_x": .5, "center_y": .5}
+                Image: 
+                    source:'sign.jpg'
+            MDList:
+                OneLineListItem:
+                    text: "Home "
+                    on_press:
+                        root.nav_drawer.set_state("close")
+                        root.screen_manager.current = "scr 1"
+                OneLineListItem:
+                    text: "Signs"
+                    on_press:
+                        root.screen_manager.current = "scr 2"
+                        root.nav_drawer.set_state("close")    
+                OneLineListItem:
+                    text: "History"
+                    on_press:
+                        root.screen_manager.current = "scr 4"
+                        root.nav_drawer.set_state("close")               
+Screen:
+    MDToolbar:
+        id: toolbar
+        pos_hint: {"top": 1}
+        elevation: 10
+        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+    MDNavigationLayout:
+        x: toolbar.height
+        ScreenManager:
+            id: screen_manager
+            Screen:
+                name: "scr 1"
+                Image:
+                    source:'sign.jpg'
+                    allow_stretch: True
+                BoxLayout:
+                    spacing:50
+                    padding:80
+                    MDRectangleFlatButton:
+                        text: "Start Translation"
+                        theme_text_color: "Custom"
+                        text_color: 0, 0, 1, 1
+                        line_color: 0, 0, 1, 1
+                        on_release:
+                            root.ids.nav_drawer.set_state("close")
+                            root.ids.screen_manager.current = "scr 3"
+            Screen:
+                name: "scr 2"
+                ScrollView:
+                    size_hint: 1.0, 0.76
+                    pos_hint: {'center_y':0.5}
+                    MDBoxLayout:
+                        orientation:'vertical'
+                        adaptive_height: True
+                        padding:[dp(15),dp(15),dp(15),dp(35)]
+                        spacing:dp(15)                   
+                        MDCard:
+                            size_hint: None, None
+                            size: "280dp", "180dp"
+                            pos_hint: {"center_x": .5, "center_y": .5}
+                            Image : 
+                                source:'images/mesmat.gif'
+                        MDLabel:
+                            text: "መስማት"
+                            font_name:'Tera-Regular.ttf'
+                            pos_hint: {"center_x": .52, "center_y": .5}
+                        MDCard:
+                            size_hint: None, None
+                            size: "280dp", "180dp"
+                            pos_hint: {"center_x": .5, "center_y": .5}
+                            Image : 
+                                source:'images/menager.gif'
+                        MDLabel:
+                            text: "መናገር"
+                            font_name:'Tera-Regular.ttf'
+                            pos_hint: {"center_x": .52, "center_y": .5}
+                        MDCard:
+                            size_hint: None, None
+                            size: "280dp", "180dp"
+                            pos_hint: {"center_x": .5, "center_y": .5}
+                            Image : 
+                                source:'images/br.gif'
+                        MDLabel:
+                            text: "ብር"
+                            font_name:'Tera-Regular.ttf'
+                            pos_hint: {"center_x": .52, "center_y": .5}
+                        MDCard:
+                            size_hint: None, None
+                            size: "280dp", "180dp"
+                            pos_hint: {"center_x": .5, "center_y": .5}
+                            Image : 
+                                source:'images/manbeb.gif'
+                        MDLabel:
+                            text: "ማንበብ"
+                            font_name:'Tera-Regular.ttf'
+                            pos_hint: {"center_x": .52, "center_y": .5}
+                        MDCard:
+                            size_hint: None, None
+                            size: "280dp", "180dp"
+                            pos_hint: {"center_x": .5, "center_y": .5}
+                            Image : 
+                                source:'images/ene.gif'
+                        MDLabel:
+                            text: "አኔ"
+                            font_name:'Tera-Regular.ttf'
+                            pos_hint: {"center_x": .52, "center_y": .5}
+                        MDCard:
+                            size_hint: None, None
+                            size: "280dp", "180dp"
+                            pos_hint: {"center_x": .5, "center_y": .5}
+                            Image : 
+                                source:'images/tmrtbet.gif'
+                        MDLabel:
+                            text: "ትምህርት ቤት"
+                            font_name:'Tera-Regular.ttf'
+                            pos_hint: {"center_x": .52, "center_y": .5}
+                        MDCard:
+                            size_hint: None, None
+                            size: "280dp", "180dp"
+                            pos_hint: {"center_x": .5, "center_y": .5}
+                            Image : 
+                                source:'images/ale.gif'
+                        MDLabel:
+                            text: "አለ"
+                            font_name:'Tera-Regular.ttf'
+                            pos_hint: {"center_x": .52, "center_y": .5}
+            Screen:
+                name: "scr 3"
+                CameraPage:
+                    id:cam
+                MDLabel:
+                    id:pred
+                    text:"ሊጀምር ነው..."
+                    font_name:'Tera-Regular.ttf'
+                    font_size:20
+                    pos_hint: {"center_x": .50, "center_y": .20}
+                FloatLayout:
+                    BoxLayout:
+                        spacing:15
+                        padding:15
+                        MDRectangleFlatButton:
+                            text: "Start"
+                            theme_text_color: "Custom"
+                            text_color: 0, 0, 1, 1
+                            line_color: 0, 0, 1, 1
+                            on_release:
+                                cam.loadCamera()
+                        MDRectangleFlatButton:
+                            text: "Stop"
+                            theme_text_color: "Custom"
+                            text_color: 0, 0, 1, 1
+                            line_color: 0, 0, 1, 1
+                            on_release:
+                                cam.CloseCamera()
+                        MDRectangleFlatButton:
+                            text: "Back"
+                            theme_text_color: "Custom"
+                            text_color: 0, 0, 1, 1
+                            line_color: 0, 0, 1, 1
+                            on_release:
+                                root.ids.nav_drawer.set_state("close")
+                                root.ids.screen_manager.current = "scr 1"
+                                cam.CloseCamera()
+            Screen:
+                name: "scr 4"
+                on_enter:cam.history()
+                MDBoxLayout:
+                    orientation: "horizontal"
+                    padding:[dp(15),dp(15),dp(15),dp(35)]
+                    spacing:dp(15)
+                    ScrollView:
+                        size_hint: 1.0, 0.76
+                        pos_hint: {'center_y':0.5}
+                        MDList:
+                            id: scroll_list
+            Screen:
+                name: "scr 5"
+                MDCard:
+                    size_hint: None, None
+                    size: "280dp", "180dp"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    Image : 
+                        id:image
+                        source:''
+                MDLabel:
+                    id:detail
+                    text: ""
+                    font_name:'Tera-Regular.ttf'
+                    pos_hint: {"center_x": .52, "center_y": .5}
+    
+        MDNavigationDrawer:
+            id: nav_drawer
+            ContentNavigationDrawer:
+                screen_manager: screen_manager
+                nav_drawer: nav_drawer
+
